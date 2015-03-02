@@ -2,6 +2,14 @@
 
 JAR version of govuk_template self-hosted on github
 
+## Requirements
+
+1. Shell (sh)
+2. Git
+3. Ruby
+4. Bundler
+5. Maven
+
 ## How to build / deploy
 
 1. Check out this repository, this will pull the latest version of the govuk_template repository as a submodule.
