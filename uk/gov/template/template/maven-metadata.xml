@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>uk.gov.template</groupId>
+  <artifactId>template</artifactId>
+  <versioning>
+    <versions>
+      <version>0.12.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20150302172151</lastUpdated>
+  </versioning>
+</metadata>
