@@ -1,101 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>uk.gov.template</groupId>
-  <version>0.12.0</version>
-  <artifactId>template</artifactId>
-  
-  <scm>
-    <connection>scm:git:https://github.com/alphagov/govuk_template_jar.git</connection>
-    <developerConnection>scm:git:https://github.com/alphagov/govuk_template_jar.git</developerConnection>
-  </scm>
-  
-  <properties>
-      <github.global.server>github</github.global.server>
-  </properties>
-  
-  <distributionManagement>
-      <repository>
-          <id>internal.repo</id>
-          <name>Temporary Staging Repository</name>
-          <url>file://${project.build.directory}/mvn-repo</url>
-      </repository>
-  </distributionManagement>
-  
-  <dependencies>
-  </dependencies>
-  
-  <build>
-    <plugins>
-		<plugin>
-		    <artifactId>exec-maven-plugin</artifactId>
-		    <groupId>org.codehaus.mojo</groupId>
-		    <executions>
-		        <execution>
-		            <id>Generate mustache</id>
-		            <phase>generate-resources</phase>
-		            <goals>
-		                <goal>exec</goal>
-		            </goals>
-		            <configuration>
-		                <executable>${basedir}/build_mustache.sh</executable>
-		            </configuration>
-		        </execution>
-		    </executions>
-		</plugin>
-		
-		<plugin>
-		    <groupId>org.codehaus.mojo</groupId>
-		    <artifactId>build-helper-maven-plugin</artifactId>
-			<version>1.9.1</version>
-		    <executions>
-		        <execution>
-		            <phase>generate-resources</phase>
-		            <goals>
-		                <goal>add-resource</goal>
-		            </goals>
-		            <configuration>
-		                <resources>
-		                    <resource>
-			                    <directory>${project.build.directory}/generated-resources</directory>
-							</resource>
-		                </resources>
-		            </configuration>
-		        </execution>
-		    </executions>
-		</plugin>
-		
-	    <plugin>
-	        <artifactId>maven-deploy-plugin</artifactId>
-	        <version>2.8.1</version>
-	        <configuration>
-	            <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
-	        </configuration>
-	    </plugin>
-		
-        <plugin>
-            <groupId>com.github.github</groupId>
-            <artifactId>site-maven-plugin</artifactId>
-            <version>0.11</version>
-		    <configuration>
-				<repositoryOwner>alphagov</repositoryOwner>
-				<repositoryName>govuk_template_jar</repositoryName>
-				<branch>refs/heads/mvn-repo</branch>  
-				<merge>true</merge> 
-		    	<message>Maven artifacts for ${project.version}</message>
-				<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-				<includes><include>**/*</include></includes>
-				<noJekyll>true</noJekyll>
-			</configuration>
-            <executions>
-               <execution>
-                 <goals>
-                   <goal>site</goal>
-                 </goals>
-                 <phase>deploy</phase>
-               </execution>
-             </executions>
-		</plugin>
-    </plugins>
-  </build>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>uk.gov.template</groupId>
+    <version>0.12.0</version>
+    <artifactId>template</artifactId>
+
+    <scm>
+        <connection>scm:git:https://github.com/alphagov/govuk_template_jar.git</connection>
+        <developerConnection>scm:git:https://github.com/alphagov/govuk_template_jar.git</developerConnection>
+    </scm>
+
+    <properties>
+        <github.global.server>github</github.global.server>
+    </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
+        </repository>
+    </distributionManagement>
+
+    <dependencies>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>exec-maven-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <executions>
+                    <execution>
+                        <id>Generate mustache</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${basedir}/build_mustache.sh</executable>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.9.1</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>${project.build.directory}/generated-resources</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.1</version>
+                <configuration>
+                    <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.11</version>
+                <configuration>
+                    <repositoryOwner>alphagov</repositoryOwner>
+                    <repositoryName>govuk_template_jar</repositoryName>
+                    <branch>refs/heads/mvn-repo</branch>  
+                    <merge>true</merge> 
+                    <message>Maven artifacts for ${project.version}</message>
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                    <includes><include>**/*</include></includes>
+                    <noJekyll>true</noJekyll>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
