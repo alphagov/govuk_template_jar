@@ -22,22 +22,22 @@
   
   <build>
     <plugins>
-		<!-- <plugin>
+		<plugin>
 		    <artifactId>exec-maven-plugin</artifactId>
 		    <groupId>org.codehaus.mojo</groupId>
 		    <executions>
 		        <execution>
 		            <id>Generate mustache</id>
-		            <phase>generate-sources</phase>
+		            <phase>generate-resources</phase>
 		            <goals>
 		                <goal>exec</goal>
 		            </goals>
 		            <configuration>
-		                <executable>${basedir}/scripts/calculate-version.sh</executable>
+		                <executable>${basedir}/build_mustache.sh</executable>
 		            </configuration>
 		        </execution>
 		    </executions>
-		</plugin> -->
+		</plugin>
 		
 		<plugin>
 		    <groupId>org.codehaus.mojo</groupId>
