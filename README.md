@@ -1,6 +1,6 @@
 # govuk_template_jar
 
-JAR version of govuk_template self-hosted on github
+[WebJar](http://www.webjars.org/) version of govuk_template assets self-hosted on github.
 
 ## How to build / deploy
 
@@ -20,11 +20,12 @@ JAR version of govuk_template self-hosted on github
 </settings>
 ```
 
-3. Run `mvn clean deploy`. This uploads the most recent assets as a JAR to github. 
+4. Set a version for the release in the `pom.xml`.
+5. Run `mvn clean deploy`. This uploads the most recent assets as a JAR to github. 
 
 ## How to use
 
-Add the following to your pom.xml:
+For Maven, add the following to your `pom.xml`:
 
 ```xml
 <repositories>
@@ -47,4 +48,19 @@ and this as a dependency:
     <artifactId>template</artifactId>
     <version>0.12.0</version>
 </dependency>
+```
+
+For SBT/Play, add the following to your `build.sbt`:
+
+```
+resolvers ++= Seq(
+  "Gov.UK WebJar Repo" at "https://raw.github.com/alphagov/govuk_template_jar/mvn-repo/"
+)
+```
+
+Then the dependency and (optionally) the Play WebJar helper:
+
+```
+"org.webjars" %% "webjars-play" % "2.3.0-2"
+"org.webjars" % "govuk_template" % "0.12.0"
 ```
