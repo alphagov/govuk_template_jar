@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>uk.gov.template</groupId>
+    <groupId>org.webjars</groupId>
     <version>0.12.0</version>
-    <artifactId>template</artifactId>
+    <artifactId>govuk_template</artifactId>
 
     <scm>
         <connection>scm:git:https://github.com/alphagov/govuk_template_jar.git</connection>
@@ -12,6 +12,7 @@
 
     <properties>
         <github.global.server>github</github.global.server>
+        <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>
     </properties>
 
     <distributionManagement>
@@ -28,38 +29,18 @@
     <build>
         <plugins>
             <plugin>
-                <artifactId>exec-maven-plugin</artifactId>
-                <groupId>org.codehaus.mojo</groupId>
-                <executions>
-                    <execution>
-                        <id>Generate mustache</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>${basedir}/build_mustache.sh</executable>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.9.1</version>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
                 <executions>
                     <execution>
                         <phase>generate-resources</phase>
-                        <goals>
-                            <goal>add-resource</goal>
-                        </goals>
+                        <goals><goal>run</goal></goals>
                         <configuration>
-                            <resources>
-                                <resource>
-                                    <directory>${project.build.directory}/generated-resources</directory>
-                                </resource>
-                            </resources>
+                            <target>
+                                <copy todir="${destDir}">
+                                    <fileset dir="module/govuk_template/source/assets/" />
+                                </copy>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
