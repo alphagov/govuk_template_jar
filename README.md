@@ -64,3 +64,10 @@ Then the dependency and (optionally) the Play WebJar helper:
 "org.webjars" %% "webjars-play" % "2.3.0-2"
 "org.webjars" % "govuk_template" % "0.12.0"
 ```
+
+##Example of usage in PlayFramework project
+
+1. Add the following line to your routes file
+```GET     /webjars/*file                        controllers.WebJarAssets.at(file)```
+2. In your *.scala.html view, you can reference any assets by:
+```"@routes.WebJarAssets.at(WebJarAssets.locate("govuk_template", "PATH_TO_YOUR_FILE"))"```
