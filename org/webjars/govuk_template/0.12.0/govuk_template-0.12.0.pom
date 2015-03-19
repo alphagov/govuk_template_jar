@@ -37,9 +37,13 @@
                         <goals><goal>run</goal></goals>
                         <configuration>
                             <target>
-                                <copy todir="${destDir}">
-                                    <fileset dir="module/govuk_template/source/assets/" />
-                                </copy>
+                                <exec executable="bundle" dir="module/govuk_template">
+                                    <arg value="exec"/>
+                                    <arg value="rake"/>
+                                    <arg value="build:webjar"/>
+                                </exec>
+
+                                <copy file="module/govuk_template/pkg/govuk_template-${project.version}.jar" todir="${destDir}" />
                             </target>
                         </configuration>
                     </execution>
