@@ -12,7 +12,7 @@
 
     <properties>
         <github.global.server>github</github.global.server>
-        <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>
+        <destDir>${project.build.directory}/mvn-repo</destDir>
     </properties>
 
     <distributionManagement>
@@ -43,7 +43,7 @@
                                     <arg value="build:webjar"/>
                                 </exec>
 
-                                <copy file="module/govuk_template/pkg/govuk_template-${project.version}.jar" todir="${destDir}" />
+                                <copy file="module/govuk_template/pkg/govuk_template-${project.version}.jar" todir="${project.build.directory}" />
                             </target>
                         </configuration>
                     </execution>
